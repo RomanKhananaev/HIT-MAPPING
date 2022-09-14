@@ -20,6 +20,7 @@ export class HomeComponent {
   view: any;
   x: any;
   y: any;
+  z: any;
   cx: any;
   cy: any;
   cz: any;
@@ -173,6 +174,28 @@ export class HomeComponent {
 
   search() {
     console.log("We search: ", this.roomObjToSearch);
+    this.factor = 0;
+    
+
+    if (this.roomObjToSearch.floor == "1") {
+      console.log("Floor 1")
+      this.z = 2 + this.factor;
+      this.cz = 2 + this.factor;
+
+    }
+    else if (this.roomObjToSearch.floor == "2") {
+      this.z = 5 + this.factor;
+      this.cz = 5 + this.factor;
+      console.log("Floor 2")
+    }
+    else if (this.roomObjToSearch.floor == "3") {
+      this.z = 8 + this.factor;
+      this.cz = 8 + this.factor;
+      console.log("Floor 3")
+    }
+    else {
+
+    }
 
 
     //this.x = this.roomObjToSearch.x;
@@ -184,12 +207,11 @@ export class HomeComponent {
 
     this.x = this.roomObjToSearch.x;
     this.y = this.roomObjToSearch.y;
-    this.factor = 0;
-    this.cz = 20 + this.factor;
+    
     this.cx = this.x;
-    this.cy = this.y - 20 - this.factor;
+    this.cy = this.y - 30 - this.factor;
 
-    this.view = "https://localhost:44487/assets/map/index.html#cx=" + this.cx + "&cy=" + this.cy + "&cz=" + this.cz + "&tx=" + this.x + "&ty=" + this.y + "&tz=0.000";
+    this.view = "https://localhost:44487/assets/map/index.html#cx=" + this.cx + "&cy=" + this.cy + "&cz=" + this.cz + "&tx=" + this.x + "&ty=" + this.y + "&tz=" + this.z;
     this.iframe.nativeElement.contentWindow.location.replace(this.view);
     this.iframe.nativeElement.contentWindow.location.reload(true);
   }
