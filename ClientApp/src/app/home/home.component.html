@@ -1,0 +1,125 @@
+
+<div class="row h-100 g-0" style="margin-left:1%;">
+
+  <div class="polaroid mt-5" dir="rtl" style="width:28%;height:85%;margin-right:1%;">
+    <div style="height:50%">
+      <div class="row">
+        <img src="../../assets/logo.png" style="float:right;height:50%;width:70%;margin-top:10px;margin-left:160px">
+      </div>
+      <div class="row mb-2 mt-3" style="border-bottom: 2px solid black; width: 90%; margin-right: 10px;">
+        <h3 style="margin-left:300px;margin-bottom:5px;margin-top:10px"> HIT מידע על מכון</h3>
+      </div>
+      <div class="row" dir="rtl">
+        <p style="margin-right:5px">המכון הטכנולוגי חולון HIT מתמקד בחקר עיוני ויישומי ובהוראת מדעים, מדעי המחשב, הנדסת חשמל ואלקטרוניקה, רפואה דיגיטלית, עיצוב, הנדסת תעשייה וניהול טכנולוגי, טכנולוגיות למידה ומדעי הנתונים. במכון פועלות שמונה יחידות מרכזיות בהן פועלות 16 תוכניות לימוד לתואר ראשון ותואר שני ושלוש תוכניות תואר שני עם תזה. המכון מכשיר אנשי מדע וטכנולוגיה, מהנדסים, מנהלים ומעצבים. כדי להכין את הסטודנטים לתפקידיהם בארגונים בתעשיית ההיטק, הביטחון, הפיננסים ועוד. מקיים שיתוף פעולה הדוק עם גורמים בתעשייה בהם קיים צורך בידע שצוברים בוגרי המכון.</p>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <div class="polaroid mt-5" style="width:50%;height:85%">
+    <!--<iframe src="../../assets/map/index.html" height="100%" width="100%"></iframe>-->
+    <iframe #iframe [src]="view | safe" id="inneriframe" scrolling="no" height="100%" width="100%"></iframe>
+  </div>
+
+
+
+
+
+
+  <div class="polaroid mt-5" dir="rtl" style="width:18%;height:85%;margin-left:1%">
+    <div class="row mb-3" style="border-bottom: 2px solid black;width:80%;margin-right:10px;">
+      <h3 style="margin-bottom:5px;margin-top:10px">פאנל חיפוש</h3>
+    </div>
+    <div class="row" style="height:30%">
+      <div class="row" style="height:5%">
+        <div class="dx-field" style="width:350px;float:right">
+          <div class="dx-field-value">
+            <dx-select-box [items]="databaseBuildings"
+                           placeholder="בחר"
+                           (onValueChanged)="getTypes($event)"></dx-select-box>
+          </div>
+          <div class="dx-field-label" style="width:110px">בניין</div>
+        </div>
+      </div>
+      <div class="row" style="height:5%">
+        <div class="dx-field" style="width:350px;float:right">
+          <div class="dx-field-value">
+            <dx-select-box [items]="databaseTypes"
+                           placeholder="בחר"
+                           (onValueChanged)="selectType($event)"></dx-select-box>
+          </div>
+          <div class="dx-field-label" style="width:110px">סוג חדר</div>
+        </div>
+      </div>
+      <div class="row" style="height:5%">
+        <div class="dx-field" style="width:350px;float:right">
+          <div class="dx-field-value">
+            <dx-select-box [disabled]="!roomNumberField" [items]="databaseRoomNum" placeholder="בחר" (onValueChanged)="selectRoom($event)"></dx-select-box>
+          </div>
+          <div class="dx-field-label" style="width:110px">מספר חדר</div>
+        </div>
+      </div>
+
+      <div class="row" style="height:5%">
+        <div class="dx-field" style="width:350px;float:right">
+          <div class="dx-field-value">
+            <dx-text-box [readOnly]="true" [value]="desc"></dx-text-box>
+          </div>
+          <div class="dx-field-label" style="width:110px">תיאור</div>
+        </div>
+      </div>
+      <div class="row" style="height:20%;margin-right:50px">
+        <dx-button class="mt-4 mb-2" stylingMode="contained"
+                   text="חיפוש"
+                   type="normal"
+                   [width]="220"
+                   style="margin-left:60px"
+                   (onClick)="search()">
+        </dx-button>
+      </div>
+    </div>
+    <div class="mt-3" style="height:25%">
+
+      <div class="row mb-2" style="border-bottom: 2px solid black; width: 80%; margin-right: 10px;">
+        <h3 style="margin-bottom:5px;margin-top:10px">מידע כללי</h3>
+      </div>
+      <div class="row" dir="rtl">
+        <p style="margin-right:5px">האתר נבנה במסגרת קורס GIS על מנת לאפשר לסטודנטים חדשים להתמצא בצורה טובה יותר בשטח המכללה. האתר בנוי באמצעות Framework בשם Angular צד השרת כתוב בשפת C# ובסיס הנתונים מיובא מתוכנת הQGIS אל ממסדר הנתונים SQL server</p>
+      </div>
+
+
+
+    </div>
+    <div class="mt-3" style="height:15%">
+
+      <div class="row mb-2" style="border-bottom: 2px solid black; width: 80%; margin-right: 10px;">
+        <h3 style="margin-bottom:5px;margin-top:10px">צוות המפתחים</h3>
+      </div>
+      <div class="row" dir="rtl" style="margin-right:20px;margin-top:15px">
+        <ul style="list-style-type: square">
+          <li>חננייב רומן 319428785</li>
+          <li>אלעד מור 313329765</li>
+          <li>עידן באסיל 301291159</li>
+          <li>אביתי אינגרמן 206020406</li>
+          <li>אשר אבקסיס 203053632</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+</div>
+
+

@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+div.polaroid {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+html,body{
+    height:100%;
+}
+.dx-field-label {
+  float: right;
+  text-align: right;
+}
+.dx-field-value {
+  float: left;
+}
+
+.dx-fieldset {
+  float: right;
+}
