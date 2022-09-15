@@ -1,9 +1,9 @@
 // (C) 2014 Minoru Akagi
 // SPDX-License-Identifier: MIT
 // https://github.com/minorua/Qgis2threejs
-
-"use strict";
-
+function look(e){
+  alert(e);
+}
 var Q3D = {
   VERSION: "2.7.1",
   application: {},
@@ -1200,6 +1200,7 @@ Q3D.application
   };
 
   app.canvasClicked = function (e) {
+    console.log(e);
 
     // button 2: right click
     if (e.button == 2 && app.measure.isActive) {
