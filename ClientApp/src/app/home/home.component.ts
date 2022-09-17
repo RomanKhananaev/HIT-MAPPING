@@ -24,7 +24,7 @@ export class HomeComponent {
   cz: any;
   factor: any;
 
-  noRoomNum = ["שירותים","קפיטריה","מחסן"]; //black list that dont have room number
+  noRoomNum = [""]; //black list that dont have room number
 
   database: any[] = [];
   databaseBuildings: any[] = [];
@@ -61,20 +61,17 @@ export class HomeComponent {
 
 
   constructor(private http: HttpClient ) {
-    //this.http.get<any>("api/Values/GetBuildings").subscribe(res => {
-    //  this.buildingsRes = res;
-    //  for (let i = 0; i < res.length; i++) {
-    //    this.buildingsNumbers.push(res[i].number);
-    //  }
-    //})
+
   }
 
 
   ngOnInit() {
     
+    this.http.get<any>("api/Values/getData").subscribe();
 
     this.http.get("assets/map/data/index/database.json").subscribe((data: any) => {
       let counter = 0;
+      console.log("data: ", data);
       for (let item of data.layers) {
         if (item.properties.type != 'dem') {
           for (let item2 of item.data.blocks[0].features) {
@@ -87,6 +84,7 @@ export class HomeComponent {
             let building = item2.prop[3];
             let floor = item2.prop[4];
             let type = item2.prop[5];
+            let direction = item2.prop[6];
             let row = {
               "x": x,
               "y": y,
@@ -96,6 +94,7 @@ export class HomeComponent {
               "building": building,
               "floor": floor,
               "type": type,
+              "direction": direction,
             }
             this.database.push(row);
             counter++;
@@ -116,7 +115,7 @@ export class HomeComponent {
 
 
     
-    this.view = "https://localhost:44487/assets/map/index.html#cx=3870963.757&cy=3765277.887&cz=199.077&tx=3870924.298&ty=3765424.363&tz=0.000";
+    this.view = "https://localhost:44487/assets/map/index.html#cx=3871055.142&cy=3765013.485&cz=96.140&tx=3871022.477&ty=3765166.914&tz=0.000";
     
     
   }
@@ -124,6 +123,7 @@ export class HomeComponent {
   getTypes(e: any) {
     this.desc = "";
     this.databaseTypes = [];
+    this.databaseRoomNum = [];
     this.selectedBuilding = e.value;
     for (let item of this.database) {
       if (item.building == this.selectedBuilding) {
@@ -177,7 +177,28 @@ export class HomeComponent {
   search() {
     console.log("We search: ", this.roomObjToSearch);
     this.factor = 0;
-    
+
+    this.x = this.roomObjToSearch.x;
+    this.y = this.roomObjToSearch.y;
+
+   
+
+    if (this.roomObjToSearch.direction == "s") {
+      this.cy = this.y + 30 - this.factor;
+      this.cx = this.x;
+    }
+    else if (this.roomObjToSearch.direction == "n") {
+      this.cy = this.y - 30 - this.factor;
+      this.cx = this.x;
+    }
+    else if (this.roomObjToSearch.direction == "w") {
+      this.cy = this.y;
+      this.cx = this.x + 30 - this.factor;
+    }
+    else if (this.roomObjToSearch.direction == "e") {
+      this.cy = this.y;
+      this.cx = this.x - 30 - this.factor;
+    }
     
     if (this.roomObjToSearch.floor == "1") {
       //console.log("Floor 1")
@@ -200,19 +221,9 @@ export class HomeComponent {
     }
 
 
-    
-    //this.x = this.roomObjToSearch.x;
-    //this.y = this.roomObjToSearch.y;
-    //this.factor = 0;
-    //this.cz = 20 + this.factor;
-    //this.cx = this.x;
-    //this.cy = this.y - 20 - this.factor;
 
-    this.x = this.roomObjToSearch.x;
-    this.y = this.roomObjToSearch.y;
     
-    this.cx = this.x;
-    this.cy = this.y - 30 - this.factor;
+    
 
 
     this.view = "https://localhost:44487/assets/map/index.html#cx=" + this.cx + "&cy=" + this.cy + "&cz=" + this.cz + "&tx=" + this.x + "&ty=" + this.y + "&tz=" + this.z;
@@ -223,18 +234,10 @@ export class HomeComponent {
 
     setTimeout(() => { this.click(); }, 500);
 
-
-    //canvasClicked({ "button": 2, "clientX": 746, "clientY": 115 });
-
-    //const mouseDblEvent = new MouseEvent('dblclick', <MouseEventInit>{ clientX: 500, clientY: 300 });
-    //this.iframe.nativeElement.dispatchEvent(mouseDblEvent);
-    //document.dispatchEvent(new MouseEvent('click', { clientX: 1678, clientY: 273, buttons: 1 }));
-    //document.dispatchEvent(new MouseEvent('click', { clientX: 900, clientY: 500, buttons: 1 }));
-
   }
 
   click() {
-    this.iframe.nativeElement.contentWindow.app.canvasClicked({ "button": 2, "clientX": 450, "clientY": 450 });
+    this.iframe.nativeElement.contentWindow.app.canvasClicked({ "button": 2, "clientX": 430, "clientY": 450 });
   }
 
 
