@@ -3,6 +3,7 @@
 HIT mapping using Qgis, Angular and C#.
   1. install visual studio 2019
   2. To use the web application clone the repository to local folder 
+  3. in file explorer on the right side doubleclick HIT_MAPPING.sln
   3. Change path in backend ("ValuesController cs file lines 24,25") to the local repository
 
 
