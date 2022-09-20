@@ -42,23 +42,6 @@ export class HomeComponent {
   buildingLayerId: any[] = [];
 
 
-
-
-
-
-
-
-
-
-  buildingsNumbers: any[] = [];
-  buildingsRes: any;
-
-  filterdRooms: any[] = [];
-
-  roomTypes: any[] = [];
-  roomsNumbers: any[] = [];
-  roomsRes: any;
-
   roomNumberField = true;
 
 
